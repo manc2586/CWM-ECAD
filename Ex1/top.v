@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #1 
-// Student Name:
-// Date: 
+// Student Name: Yi Fong Mah
+// Date: 8 June 2020
 //
 //  Description: In this exercise, you need to design a logical unit, where the  
 //  output acts according to the following truth table:
@@ -31,6 +31,12 @@ module logicalunit(
     
     wire   out;
          
-      //Todo: add you logic here
+    // Todo: add your logic here  
+
+    // use conditionals to encode truth table
+    assign out = (a && b)  ? func[3]:
+                 (a && !b) ? func[2]:
+                 (!a && b) ? func[1]:
+                             func[0];
 
 endmodule
