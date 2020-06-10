@@ -20,7 +20,7 @@ module top_tb(
 	reg button = 0; 
 	reg clk = 0;
 	reg err = 0;
-	wire [2:0] throw = 2'b000;
+	wire [2:0] throw;
 	
 //Todo: Clock generation
 	initial
@@ -37,7 +37,7 @@ module top_tb(
 		// test normal throw
 		button = 1;
 		#(CLK_PERIOD * 10)
-		if(throw != 2'b100)
+		if(throw != 3'b100)
 		begin
         	$display("***THROW FAILED!***");    
         	err=1;
@@ -46,8 +46,8 @@ module top_tb(
 		// test reset
 		button = 0;
 		rst = 1;
-		#CLK_PERIOD
-		if(throw != 2'b000)
+		#(CLK_PERIOD * 10)
+		if(throw != 3'b000)
 		begin
         	$display("***RESET FAILED!***");    
         	err=1;
@@ -56,7 +56,7 @@ module top_tb(
     	// test illegal values
     	rst = 0;
     	#CLK_PERIOD
-		if(throw == 2'b000 || throw == 2'b111)
+		if(throw == 3'b000 || throw == 3'b111)
 		begin
         	$display("***ILLEGAL VALUE!***");    
         	err=1;

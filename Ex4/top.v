@@ -23,22 +23,22 @@ module dice(
 	input clk,
 	input button,
 	
-	output reg [2:0] throw
+	output reg [2:0] throw = 3'b000
 	);
 	
 	always @(posedge clk)
 	begin
 		// reset
 		if(rst == 1)
-			throw <= 2'b000;
+			throw <= 3'b000;
 		// rectify illegal values
-		else if(throw == 2'b000 || throw == 2'b111)
-			throw <= 2'b001;
+		else if(throw == 3'b000 || throw == 3'b111)
+			throw <= 3'b001;
 		// button pressed
 		else if(button)
 		begin
-			if(throw == 2'b110)
-				throw <= 2'b001;
+			if(throw == 3'b110)
+				throw <= 3'b001;
 			else
 				throw <= throw + 1;
 		end
