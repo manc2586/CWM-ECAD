@@ -23,6 +23,9 @@ create_fileset -constrset -quiet constraints
 #Todo: add verilog modules here
 read_verilog "top.v"
 read_verilog "top_tb.v"
+read_verilog "dice.v"
+read_verilog "multiplexer.v"
+read_verilog "trafficlights.v"
 
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
