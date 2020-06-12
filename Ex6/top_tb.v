@@ -20,7 +20,7 @@ module top_tb(
 	reg clk;
 	reg button = 0;
 	reg sel;
-	wire [2:0] result = 3'b000;
+	wire [2:0] result;
 	
 	reg err = 0;
 
@@ -41,19 +41,22 @@ module top_tb(
 		#10 
 		rst = 0; 
 		button = 1;	
-		#10
+		#100
 		if(result != 3'b100) 
 		begin 
 			err = 1;
 			$display("***DICE TEST FAILED***",result);
 		end
-//2.Test traffic_lights module (note: sel=1)
-	/*sel = 1;	
-	#20
-	if(result != 3'b010) begin 
-	err = 1;
-	$display("***LIGHTS TEST FAILED",);
-	end*/
+		
+        // test traffic lights
+        sel = 1;
+        #20
+        if(result != 3'b010)
+        begin  
+            err = 1;
+            $display("***TRAFFIC LIGHTS FAILED***",result);
+        end
+        
 	end	
 
 // finish test, check for success

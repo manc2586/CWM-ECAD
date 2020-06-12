@@ -32,7 +32,7 @@ module dotl(
 	);
 	
 	// internal wires
-	wire [2:0] throw = 3'b000;
+	wire [2:0] throw;
 	wire [2:0] state;
 
 	// instantiate dice
