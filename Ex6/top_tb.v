@@ -16,7 +16,13 @@ module top_tb(
 	parameter CLK_PERIOD = 10;
 	
 // registers and wires
-
+	reg rst = 0;
+	reg clk;
+	reg button = 0;
+	reg sel;
+	wire [2:0] result = 3'b000;
+	
+	reg err = 0;
 
 // clock generation
 	initial
@@ -25,6 +31,30 @@ module top_tb(
 		forever
 			#(CLK_PERIOD/2) clk = ~clk;
 	end
+
+// actual test
+	initial 
+	begin
+		// test dice
+	    sel = 0;
+		rst = 1;
+		#10 
+		rst = 0; 
+		button = 1;	
+		#10
+		if(result != 3'b100) 
+		begin 
+			err = 1;
+			$display("***DICE TEST FAILED***",result);
+		end
+//2.Test traffic_lights module (note: sel=1)
+	/*sel = 1;	
+	#20
+	if(result != 3'b010) begin 
+	err = 1;
+	$display("***LIGHTS TEST FAILED",);
+	end*/
+	end	
 
 // finish test, check for success
 	initial 

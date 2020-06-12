@@ -23,7 +23,7 @@ module dice(
 	input clk,
 	input button,
 	
-	output reg [2:0] throw = 3'b000
+	output reg [2:0] throw
 	);
 	
 	always @(posedge clk)
